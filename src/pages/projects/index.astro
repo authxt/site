@@ -14,13 +14,15 @@ const projects = await getCollection("projects");
       <div class="group col-span-3">
         <ul class="hover:!blur-none group-hover:blur-sm">
           {projects.map((project: any) => <ProjectList project={project} />)}
-          {projects.map((project: any) => <ProjectList project={project} />)}
         </ul>
       </div>
       <div
         class="default-border box-bg sticky top-32 col-span-5 self-start rounded-xl p-5"
       >
         <p class="maintext">change this based on hover</p>
+        <div>
+          <p class="maintext">This part on WIP.</p>
+        </div>
       </div>
     </div>
   </body>
