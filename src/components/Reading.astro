@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { formatDate } from "@/lib/util";
+
+interface Props {
+  book: CollectionEntry<"books">;
+}
+
+const { book } = Astro.props;
+const { title, author, progress, cover, dateStarted, goodreadsUrl } = book.data;
+---
+
+<div
+  class="mx-auto mb-8 rounded-lg bg-white px-4 py-2 shadow-md drop-shadow-sm dark:bg-[#171717] dark:drop-shadow-none"
+>
+  <div class="flex flex-row items-center justify-between p-2">
+    <span class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400"
+      >On the coffee table</span
+    >
+    {
+      goodreadsUrl && (
+        <div class="cursor-pointer rounded-full bg-gray-200 bg-opacity-40 p-2 hover:rotate-45 hover:bg-gray-200 hover:drop-shadow-md dark:bg-[#0a0a0a]">
+          <a
+            href={goodreadsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-gray-500 dark:text-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-up-right"
+            >
+              <>
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
+              </>
+            </svg>{" "}
+          </a>
+        </div>
+      )
+    }
+  </div>
+  <hr class="ml-2 w-1/5 border-[1px] opacity-5" />
+  <div class="mx-2 my-4 flex flex-col gap-4 md:flex-row">
+    {
+      cover && (
+        <a
+          href={goodreadsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mr-4 flex-shrink-0"
+        >
+          <Image
+            src={cover}
+            alt={`Cover of ${title}`}
+            width={160}
+            height={200}
+            class="max-w-40 rounded object-cover shadow md:min-h-full"
+          />
+        </a>
+      )
+    }
+    <div class="flex flex-col justify-between">
+      <div>
+        <h3 class="text-lg font-semibold text-black md:text-xl dark:text-white">
+          {title}
+        </h3>
+        <p class="md:text-md text-sm text-gray-600">{author}</p>
+      </div>
+      <div>
+        {
+          dateStarted && (
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Picked up at {formatDate(dateStarted)}
+            </p>
+          )
+        }
+        {
+          progress !== undefined && (
+            <div class="mt-2">
+              <div class="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                <div
+                  class="h-2.5 rounded-full bg-violet-500"
+                  style={`width: ${progress}%`}
+                />
+              </div>
+              <p class="mt-1 text-sm text-gray-600">{progress}% complete</p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

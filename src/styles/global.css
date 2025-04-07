@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/fonts/GeistMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Light";
+  src: url("/fonts/Geist-Light.ttf") format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    /* background-color: #0a0a0a; */
+    /* color: white; */
+  }
+}
+
+kbd {
+  color: #fff !important;
+  background-color: #171717;
+  border: 1px solid #555;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 2px #171717; /* Subtle shadow */
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Adjust font sizes for mobile */
+@media (max-width: 768px) {
+  .prose {
+    font-size: 16px;
+  }
+  .prose pre,
+  .prose code {
+    font-size: 14px;
+  }
+}
+
+/* Shortened classes for tedious class names */
+
+.default-bg {
+  @apply bg-light-background dark:bg-dark-background;
+}
+
+.default-border {
+  @apply border border-light-accent border-opacity-10 dark:border-dark-accent dark:border-opacity-10;
+}
+
+.hover-element {
+  @apply border border-white border-opacity-0 bg-light-primary hover:border hover:border-light-accent hover:border-opacity-10 hover:bg-light-secondary dark:bg-dark-primary dark:hover:border-dark-accent hover:dark:border-opacity-10 dark:hover:bg-dark-secondary;
+}
+
+.box-bg {
+  @apply bg-light-primary dark:bg-dark-primary;
+}
+
+.mainheading {
+  @apply text-light-textPrimary dark:text-dark-textPrimary font-bold;
+}
+
+.subheading {
+  @apply text-light-textSecondary dark:text-dark-textSecondary font-bold;
+}
+
+.maintext {
+  @apply text-light-textPrimary dark:text-dark-textPrimary;
+}
+
+.subtext {
+  @apply text-light-textSecondary dark:text-dark-textSecondary;
+}
+
+.mutetext {
+  @apply text-light-textMuted dark:text-dark-textMuted;
+}
+
+.anime {
+  @apply transition duration-300 ease-in-out;
+}
+
+.seperator {
+  @apply mx-2 border-light-accent border-opacity-5 first:border-0 dark:border-dark-accent dark:border-opacity-10;
+}

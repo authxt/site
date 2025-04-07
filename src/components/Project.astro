@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import { Forward } from "lucide-astro";
+import FadeIn from "@/components/animations/FadeIn.jsx";
+import SlideIn from "@/components/animations/SlideIn.jsx";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+const projects = (await getCollection("projects")).slice(0, 5);
+---
+
+<div class="mb-6">
+  <div class="mb-4 flex flex-row items-center justify-between">
+    <p class="text-md subheading">Featured projects</p>
+    <!-- <a
+      href="/projects"
+      class="hidden text-gray-400 no-underline hover:text-black hover:underline md:block dark:hover:text-white"
+      ><Forward />
+    </a> -->
+  </div>
+  <SlideIn client:load>
+    <div
+      class="box-bg default-border flex list-none flex-col gap-1 rounded-xl p-2"
+    >
+      <ul>
+        {projects.map((project: any) => <ProjectCard project={project} />)}
+      </ul>
+    </div>
+  </SlideIn>
+</div>

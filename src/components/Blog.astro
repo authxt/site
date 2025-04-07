@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import { Forward } from "lucide-astro";
+import FadeIn from "@/components/animations/FadeIn.jsx";
+import SlideIn from "@/components/animations/SlideIn.jsx";
+import BlogCard from "@/components/BlogCard.astro";
+const posts = (await getCollection("blog"))
+  .sort(
+    (
+      a: { data: { publicationDate: any } },
+      b: { data: { publicationDate: any } },
+    ) => b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
+  )
+  .slice(0, 5);
+---
+
+<div class="mb-6">
+  <div class="mb-4 flex flex-row items-center justify-between">
+    <p class="text-md subheading">Recent writings</p>
+    <!-- <a
+      href="/blog"
+      class="hidden text-gray-400 no-underline hover:text-black hover:underline md:block dark:hover:text-white"
+      ><Forward /></a
+    > -->
+  </div>
+  <SlideIn client:visible>
+    <ul
+      class="box-bg default-border flex list-none flex-col gap-0 rounded-xl p-2"
+    >
+      {posts.map((post: any) => <BlogCard post={post} />)}
+    </ul>
+  </SlideIn>
+</div>

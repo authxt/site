@@ -1,0 +1,80 @@
+---
+import HoverCard from "@/components/HoverCard.astro";
+import StaticLayout from "@/layouts/StaticLayout.astro";
+import SeoPage from "@/components/SeoPage.astro";
+---
+
+<StaticLayout>
+  <SeoPage slot="head" title="bookshelf" />
+  <body class="h-screen overflow-auto">
+    <div
+      class="mx-4 flex flex-col gap-8 md:mx-0 md:grid md:grid-cols-8 md:gap-20"
+    >
+      <div class="static top-28 col-span-3 self-start md:sticky">
+        <p class="mainheading text-md mb-4">Now</p>
+        <p class="subtext">
+          This page is inspired by <a
+            class="text-wrap text-blue-400 underline"
+            href="https://nownownow.com/about">Derek Sivers's</a
+          > now page.
+        </p>
+      </div>
+      <div class="flex flex-col gap-8 md:col-span-5">
+        <div class="flex flex-col gap-4">
+          <p class="mainheading">Last Read</p>
+          <div class="flex w-full flex-col gap-4 md:flex-row">
+            <div
+              class="box-bg default-border flex w-full justify-between rounded-xl p-4"
+            >
+              <div class="flex flex-col">
+                <p class="maintext">As Good As Dead</p>
+                <p class="subtext">Holly Jackson</p>
+              </div>
+              <HoverCard
+                imageUrl="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1623112782i/56905097.jpg"
+              />
+            </div>
+            <div
+              class="box-bg default-border flex w-full justify-between rounded-xl p-4"
+            >
+              <div class="flex flex-col">
+                <p class="maintext">She and her Cat</p>
+                <p class="subtext">Makoto Shinkai</p>
+              </div>
+              <HoverCard
+                imageUrl="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1652860100i/60321429.jpg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="mainheading">Last Watch</p>
+          <div class="flex w-full flex-col gap-4 md:flex-row">
+            <div
+              class="box-bg default-border flex w-full justify-between rounded-xl p-4"
+            >
+              <div class="flex flex-col">
+                <p class="maintext">She and her Cat</p>
+                <p class="subtext">Makoto Shinkai</p>
+              </div>
+              <HoverCard
+                imageUrl="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1652860100i/60321429.jpg"
+              />
+            </div>
+            <div
+              class="box-bg default-border flex w-full justify-between rounded-xl p-4"
+            >
+              <div class="flex flex-col">
+                <p class="maintext">She and her Cat</p>
+                <p class="subtext">Makoto Shinkai</p>
+              </div>
+              <HoverCard
+                imageUrl="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1652860100i/60321429.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</StaticLayout>

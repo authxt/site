@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+
+const { book } = Astro.props;
+
+function getStatusColor(status) {
+  switch (status.toLowerCase()) {
+    case "reading":
+      return "bg-violet-500";
+    case "completed":
+      return "bg-green-500";
+    case "to-read":
+      return "bg-yellow-500";
+    default:
+      return "bg-gray-500";
+  }
+}
+
+const statusColor = getStatusColor(book.data.status);
+---
+
+<div
+  class="book-card overflow-hidden rounded-lg border border-white border-opacity-5 bg-white shadow-lg transition-all duration-300 ease-in-out hover:bg-[#171717] hover:shadow-2xl dark:bg-[#0a0a0a]"
+>
+  <a href={book.data.goodreadsUrl} target="_blank">
+    <div class="relative m-4 mb-0 h-52 rounded md:h-64">
+      <Image
+        src={book.data.cover}
+        alt={`Cover of ${book.data.title}`}
+        width={250}
+        height={375}
+        class="h-full w-full rounded object-cover"
+      />
+      <div
+        class={`absolute top-2 right-2 ${statusColor} text-white text-xs font-bold px-2 py-1 rounded border border-white border-opacity-10`}
+      >
+        {book.data.status}
+      </div>
+    </div>
+    <div class="p-4">
+      <h3
+        class="text-blac mb-2 text-lg font-semibold text-black dark:text-white"
+      >
+        {book.data.title}
+      </h3>
+      <p class="mb-2 text-sm text-gray-400">{book.data.author}</p>
+      <p class="mb-2 text-xs text-gray-500">{book.data.genre}</p>
+      {
+        book.data.rating && (
+          <div class="mb-2 flex items-center">
+            <span class="mr-1 text-yellow-500">★</span>
+            <span class="text-sm text-black dark:text-white">
+              {book.data.rating.toFixed(1)}
+            </span>
+          </div>
+        )
+      }
+      {
+        book.data.dateCompleted && (
+          <p class="text-xs text-gray-500">
+            Completed: {new Date(book.data.dateCompleted).toLocaleDateString()}
+          </p>
+        )
+      }
+    </div>
+  </a>
+</div>

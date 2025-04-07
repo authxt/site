@@ -1,0 +1,91 @@
+---
+import { NAV_LINKS, SITE, SOCIAL_LINKS } from "@/consts";
+---
+
+<header
+  class="sticky top-4 z-50 m-4 mx-auto flex justify-center overflow-x-hidden pb-4 md:pb-2"
+>
+  <div
+    class="default-border box-bg mx-4 flex w-full max-w-screen-lg flex-col rounded-lg px-8 backdrop-blur-lg md:flex-row"
+  >
+    <div class="my-1 flex w-full flex-row items-center justify-between">
+      <div class="p-2">
+        <a
+          href="/"
+          class="text-md mr-auto px-2 font-semibold no-underline sm:text-xl"
+        >
+          <span class="text-[#2596BE]">Auth</span><span
+            class="text-black dark:text-white">X.</span
+          >
+        </a>
+      </div>
+      <div>
+        <button
+          id="menu-toggle"
+          class="toggle p-2 text-black md:hidden dark:text-white"
+        >
+          <svg
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            ><path
+              d="M0 5.5h15m-15-4h15m-15 8h15m-15 4h15"
+              stroke="currentColor"></path></svg
+          >
+        </button>
+      </div>
+    </div>
+    <nav
+      class="dark:text-secondary md:align-center text-gray-600 md:mx-auto md:flex md:pl-0"
+    >
+      <ul
+        id="nav-list"
+        class="nav-li md:align-center mx-1 my-auto mb-4 hidden transition-all duration-300 md:my-auto md:flex md:flex-nowrap md:gap-4"
+      >
+        {
+          Object.keys(NAV_LINKS).map((navItemKey) => {
+            return (
+              <li class="self-center p-1 md:p-0">
+                <a
+                  href={NAV_LINKS[navItemKey].path}
+                  class="mx-2 text-black no-underline opacity-80 hover:opacity-100 dark:text-white"
+                >
+                  {NAV_LINKS[navItemKey].label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupMenu() {
+    const navList = document.getElementById("nav-list");
+    const toggler = document.getElementById("menu-toggle");
+
+    console.log("Setting up menu");
+    console.log("navList:", navList);
+    console.log("toggler:", toggler);
+
+    if (navList && toggler) {
+      toggler.addEventListener("click", () => {
+        console.log("Toggle clicked");
+        navList.classList.toggle("hidden");
+        console.log("navList classes after toggle:", navList.classList);
+      });
+    } else {
+      console.error("navList or toggler is null");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", setupMenu);
+  document.addEventListener("astro:page-load", setupMenu);
+
+  console.log("Script loaded");
+  setupMenu();
+</script>

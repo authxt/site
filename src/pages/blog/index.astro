@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Post from "@/components/Post.astro";
+import SlideIn from "@/components/animations/SlideIn.jsx";
+import SeoPage from "@/components/SeoPage.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (
+    a: { data: { publicationDate: any } },
+    b: { data: { publicationDate: any } },
+  ) => b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
+);
+
+// Group posts by year and sort years in descending order
+const postsByYear = posts.reduce(
+  (acc, post) => {
+    const year = new Date(post.data.publicationDate).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<number, typeof posts>,
+);
+
+const sortedYears = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<Layout>
+  <SeoPage slot="head" title="blog" />
+  <div class="flex flex-col gap-2 md:grid md:grid-cols-8 md:gap-20">
+    <div class="invisible md:visible md:col-span-3">
+      <p class="text-md mainheading">Tags</p>
+    </div>
+    <div class="md:col-span-5">
+      {
+        sortedYears.map((year) => (
+          <div class="mb-8">
+            <h2 class="subheading mb-6 text-2xl">{year}</h2>
+            <SlideIn client:load>
+              <ul class="grid list-none gap-4 p-0">
+                {postsByYear[year].map((post: any) => (
+                  <Post post={post} />
+                ))}
+              </ul>
+            </SlideIn>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

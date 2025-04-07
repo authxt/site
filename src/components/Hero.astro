@@ -1,0 +1,54 @@
+---
+import SlideIn from "@/components/animations/SlideIn";
+---
+
+<section>
+  <div class="flex flex-col justify-start gap-4">
+    <div class="h-auto w-14 rounded-full">
+      <img
+        src="https://avatars.githubusercontent.com/u/192339393?v=4"
+        alt="profile"
+        class="rounded-full hover:animate-[spin_3s_ease-in-out_infinite]"
+      />
+    </div>
+    <div>
+      <h1 class="mainheading text-xl">Hi. I'm AuthX.</h1>
+      <h1 class="subheading text-xl">
+        Developer from <span class="">Pokhara, Nepal.</span>
+      </h1>
+      <SlideIn client:load>
+        <p class="text-md subtext mt-2">
+          <span id="this-guy-changes">...</span>
+        </p>
+      </SlideIn>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  async function getGitHubStatus() {
+    const githubUsername = "authxth";
+
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${githubUsername}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("GitHub API request failed");
+      }
+
+      const data = await response.json();
+
+      const statusMessage = data.bio || "Rust!";
+      document.getElementById("this-guy-changes").innerText = statusMessage;
+    } catch (error) {
+      console.error("Error fetching GitHub status:", error);
+      document.getElementById("this-guy-changes").innerText = "Rust!";
+    }
+  }
+
+  getGitHubStatus();
+
+  setInterval(getGitHubStatus, 15000);
+</script>

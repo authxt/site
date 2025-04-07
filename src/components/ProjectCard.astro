@@ -1,0 +1,27 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<hr class="seperator" />
+<li>
+  <a href={project.data.url} class="text-white no-underline" target="_blank">
+    <div class="hover-element flex min-h-full gap-1 rounded-lg p-4">
+      <div class="anime bg-opacity-70 dark:hover:bg-opacity-100">
+        <div class="flex flex-col">
+          <p class="maintext pb-1 font-medium">
+            {project.data.title}
+          </p>
+          <p class="subtext text-sm">
+            {project.data.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>

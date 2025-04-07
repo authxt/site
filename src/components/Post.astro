@@ -1,0 +1,21 @@
+---
+import { formatDateShort, readingTime } from "@/lib/util";
+import { Image } from "astro:assets";
+
+const { post } = Astro.props;
+
+const readTime = readingTime(post.body);
+---
+
+<li class="mb-4 flex flex-col no-underline sm:justify-between">
+  <a href={`/blog/${post.slug}`} class="flex flex-row justify-between">
+    <h1 class="text-md mainheading">
+      {post.data.title}
+    </h1>
+    <div class="flex flex-row items-center gap-2">
+      <p class="subtext text-xs md:text-sm">
+        {formatDateShort(post.data.publicationDate)}
+      </p>
+    </div>
+  </a>
+</li>

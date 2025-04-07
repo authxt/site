@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import StaticLayout from "@/layouts/StaticLayout.astro";
+import ProjectList from "@/components/ProjectList.astro";
+import SeoPage from "@/components/SeoPage.astro";
+
+const projects = await getCollection("projects");
+---
+
+<StaticLayout>
+  <SeoPage slot="head" title="projects" />
+  <body class="h-screen overflow-auto">
+    <div class="grid grid-cols-8 gap-20">
+      <div class="group col-span-3">
+        <ul class="hover:!blur-none group-hover:blur-sm">
+          {projects.map((project: any) => <ProjectList project={project} />)}
+          {projects.map((project: any) => <ProjectList project={project} />)}
+        </ul>
+      </div>
+      <div
+        class="default-border box-bg sticky top-32 col-span-5 self-start rounded-xl p-5"
+      >
+        <p class="maintext">change this based on hover</p>
+      </div>
+    </div>
+  </body>
+</StaticLayout>

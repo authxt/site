@@ -1,0 +1,39 @@
+---
+import SlideIn from "@/components/animations/SlideIn.jsx";
+import { SOCIAL_LINKS } from "@/consts";
+---
+
+<div class="mb-4 flex flex-row items-center justify-between">
+  <p class="text-md subheading">Socials</p>
+</div>
+
+<SlideIn client:load>
+  <div
+    class="box-bg default-border flex list-none flex-col gap-1 rounded-xl p-2"
+  >
+    <ul class="flex flex-col">
+      {
+        Object.keys(SOCIAL_LINKS).map((socialItemKey) => {
+          const IconComponent = SOCIAL_LINKS[socialItemKey].icon;
+          return (
+            <>
+              <hr class="seperator" />
+              <a href={SOCIAL_LINKS[socialItemKey].url} class="">
+                <li class="hover-element flex min-h-full gap-1 rounded-lg p-4">
+                  <div class="align-center flex flex-row items-center gap-4">
+                    <span class="maintext items-center opacity-80">
+                      <IconComponent size={16} />
+                    </span>
+                    <span class="maintext">
+                      {SOCIAL_LINKS[socialItemKey].label}
+                    </span>
+                  </div>
+                </li>
+              </a>
+            </>
+          );
+        })
+      }
+    </ul>
+  </div>
+</SlideIn>
