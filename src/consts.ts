@@ -24,9 +24,9 @@ export const NAV_LINKS: NavigationLinks = {
     path: "/projects",
     label: "projects",
   },
-  Images: {
-    path: "/image",
-    label: "Images",
+  uses: {
+    path: "/uses",
+    label: "uses",
   },
 };
 
