@@ -1,9 +1,8 @@
 import { Github, Mail, Rss } from "lucide-astro";
-import BlueskyIcon from "@/components/icons/BlueskyIcon";
 
 import type {
-  SiteConfiguration,
   NavigationLinks,
+  SiteConfiguration,
   SocialLinks,
 } from "@/types.ts";
 
@@ -38,7 +37,7 @@ export const SOCIAL_LINKS: SocialLinks = {
   },
   github: {
     label: "GitHub",
-    url: "https://github.com/authxth",
+    url: "https://github.com/authxt",
     icon: Github,
   },
   rss: {
