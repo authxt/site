@@ -2,7 +2,7 @@
 title: "Basic auth in NextJS without library"
 description: "Implementing basic authentication in Next.js 14 is straightforward."
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2023-12-24
 tags: ["thoughts", "blog"]
 ---
 

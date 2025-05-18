@@ -2,7 +2,7 @@
 title: "Java's Type Flexibility: Bug or Feature?"
 description: "Comparing type handling in Java and TypeScript generics."
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2021-4-19
 tags: ["thoughts", "blog"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Understanding Hydration Errors in React"
 description: "In this blog we will discuss about the most heard error in React called Hydration error and SSR."
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2023-1-12
 tags: ["thoughts", "blog"]
 ---
 

@@ -2,7 +2,7 @@
 title: "the word sorry"
 description: ""
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2021-12-15
 image: "./Ritsuko_Reads_Orly_Meme_Book.png"
 imageAlt: "Some image i have in my pc"
 tags: ["thoughts", "blog"]

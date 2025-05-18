@@ -2,7 +2,7 @@
 title: "deciding to write a blog"
 description: ""
 author: authxth
-publicationDate: 2024-12-09
+publicationDate: 2022-12-09
 image: "./Ritsuko_Reads_Orly_Meme_Book.png"
 imageAlt: "Some image i have in my pc"
 tags: ["blog"]

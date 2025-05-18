@@ -2,7 +2,7 @@
 title: "Iterables & Iterators in JavaScript"
 description: "Iterable objects are a generalization of arrays. That’s a concept that allows us to make any object useable in a for..of loop."
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2023-12-15
 tags: ["thoughts", "blog"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Run Node with specific env file"
 description: "In this blog, we'll explore using specific environment files like .env.trail or .env.test in our applications, along with scripting for management."
 author: authxth
-publicationDate: 2024-12-15
+publicationDate: 2023-10-15
 tags: ["thoughts", "blog"]
 ---
 
