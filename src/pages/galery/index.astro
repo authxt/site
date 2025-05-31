@@ -1,0 +1,92 @@
+---
+import HoverCard from "@/components/HoverCard.astro";
+import StaticLayout from "@/layouts/StaticLayout.astro";
+import SeoPage from "@/components/SeoPage.astro";
+import { Image } from "astro:assets";
+import SlideIn from "@/components/animations/SlideIn.jsx";
+
+// Gallery images array
+const images = [
+  {
+    src: "/images/image1.png",
+  },
+  {
+    src: "/images/image2.png",
+  },
+  {
+    src: "/images/image3.png",
+  },
+  {
+    src: "/images/image4.png",
+  },
+  {
+    src: "/images/image5.png",
+  },
+  {
+    src: "/images/image6.png",
+  },
+  {
+    src: "/images/image8.png",
+  },
+  {
+    src: "/images/image9.png",
+  },
+  {
+    src: "/images/image10.png",
+  }
+];
+---
+
+<StaticLayout>
+  <SeoPage slot="head" title="Gallery" />
+  <body class="h-screen overflow-auto">
+    <div class="mx-4 flex flex-col gap-8">
+      <div>
+        <h2 class="text-xl font-medium text-gray-200 mb-6">Featured Gallery</h2>
+        <p class="text-sm text-gray-400 mb-8">
+          Capturing the serene beauty of nature - from misty mountain vistas to vibrant sunsets. 
+          Each image tells a story of tranquil moments and breathtaking landscapes that remind us 
+          of the world's natural wonders.
+        </p>
+        <SlideIn client:load>
+          <div class="box-bg default-border rounded-xl p-4">
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+              {images.map((image) => (
+                <div 
+                  class="relative cursor-pointer overflow-hidden rounded-lg transition-transform hover:scale-[1.02]"
+                  style="aspect-ratio: 2/3;"
+                  data-image={image.src}
+                >
+                  <img
+                    src={image.src}
+                    alt="Gallery image"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </SlideIn>
+      </div>
+    </div>
+  </body>
+</StaticLayout>
+
+<script>
+  import ImageModal from '@/components/ImageModal';
+
+  // Initialize modal
+  const modal = new ImageModal();
+
+  // Add click handlers to all gallery images
+  document.addEventListener('astro:page-load', () => {
+    const galleryImages = document.querySelectorAll('[data-image]');
+    galleryImages.forEach(image => {
+      image.addEventListener('click', () => {
+        const imageSrc = image.dataset.image;
+        modal.create(imageSrc);
+      });
+    });
+  });
+</script>

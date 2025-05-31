@@ -23,9 +23,9 @@ export const NAV_LINKS: NavigationLinks = {
     path: "/projects",
     label: "projects",
   },
-  uses: {
-    path: "/uses",
-    label: "uses",
+  galery: {
+    path: "/galery",
+    label: "galery",
   },
 };
 

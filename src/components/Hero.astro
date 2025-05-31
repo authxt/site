@@ -1,31 +1,51 @@
 ---
 import SlideIn from "@/components/animations/SlideIn";
+import ImageModal from "@/components/ImageModal";
 ---
 
-<section>
+<section class="flex flex-col gap-6">
   <div class="flex flex-col justify-start gap-4">
-    <div class="h-auto w-14 rounded-full">
+    <div 
+      class="h-20 w-20 rounded-full overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform"
+      data-image="https://avatars.githubusercontent.com/u/192339393?v=4"
+    >
       <img
         src="https://avatars.githubusercontent.com/u/192339393?v=4"
         alt="profile"
-        class="rounded-full hover:animate-[spin_3s_ease-in-out_infinite]"
+        class="h-full w-full object-cover"
       />
     </div>
-    <div>
-      <h1 class="mainheading text-xl">Hi. I'm AuthX.</h1>
-      <h1 class="subheading text-xl">
-        Developer from <span class="">Pokhara, Nepal.</span>
-      </h1>
+    <div class="flex flex-col gap-1">
+      <h1 class="text-2xl font-medium text-gray-200">Hi. I'm AuthX.</h1>
+      <h2 class="text-lg text-gray-400">
+        Developer from <span class="text-gray-300">Pokhara, Nepal.</span>
+      </h2>
       <SlideIn client:load>
-        <p class="text-md subtext mt-2">
-          <span id="this-guy-changes">...</span>
+        <p class="text-base text-gray-400 mt-1">
+          <span id="this-guy-changes">Rust!</span>
         </p>
       </SlideIn>
     </div>
   </div>
 </section>
 
+<div class="mt-8 -ml-4">
+  <div 
+    class="relative w-[350px] max-w-full cursor-pointer overflow-hidden rounded-[2rem] bg-box-bg transition-transform hover:scale-[1.02]" 
+    style="aspect-ratio: 3/4;"
+    data-image="/Profile/Profile.png"
+  >
+    <img
+      src="/Profile/Profile.png" 
+      alt="Featured image"
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+  </div>
+</div>
+
 <script type="module">
+  // GitHub status update
   async function getGitHubStatus() {
     const githubUsername = "authxth";
 
@@ -49,6 +69,22 @@ import SlideIn from "@/components/animations/SlideIn";
   }
 
   getGitHubStatus();
-
   setInterval(getGitHubStatus, 15000);
+
+  // Image modal functionality
+  import ImageModal from '@/components/ImageModal';
+  
+  // Initialize modal
+  const modal = new ImageModal();
+
+  // Add click handlers to all profile images
+  document.addEventListener('astro:page-load', () => {
+    const profileImages = document.querySelectorAll('[data-image]');
+    profileImages.forEach(image => {
+      image.addEventListener('click', () => {
+        const imageSrc = image.dataset.image;
+        modal.create(imageSrc);
+      });
+    });
+  });
 </script>
