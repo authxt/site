@@ -7,13 +7,19 @@ tags: ["dotfiles"]
 url: "https://github.com/authxth/NixOS"
 ---
 
+import { Image } from 'astro:assets';
+
 # NixOS Configuration System
 
 <div align="center">
   <h2>🚀 A Modern, Customizable NixOS Configuration</h2>
 
-
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="200" alt="NixOS Logo">
+  <Image 
+    src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" 
+    width={200} 
+    height={200} 
+    alt="NixOS Logo"
+  />
 
   <p>A powerful, modular, and reproducible NixOS configuration system designed for modern computing needs.</p>
 </div>
@@ -46,4 +52,4 @@ This NixOS configuration system leverages the power of Nix Flakes to create a fu
   - Multiple editor configurations (NixVim, VSCode, NvChad)
   - Language-specific development environments
   - Docker and container support
-  - Git configuration and tools
+  - Git configuration and tools 
