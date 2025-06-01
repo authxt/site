@@ -1,6 +1,5 @@
 ---
 import SlideIn from "@/components/animations/SlideIn";
-import ImageModal from "@/components/ImageModal";
 ---
 
 <section class="flex flex-col gap-6">
@@ -44,7 +43,7 @@ import ImageModal from "@/components/ImageModal";
   </div>
 </div>
 
-<script type="module">
+<script>
   // GitHub status update
   async function getGitHubStatus() {
     const githubUsername = "authxth";
@@ -61,10 +60,12 @@ import ImageModal from "@/components/ImageModal";
       const data = await response.json();
 
       const statusMessage = data.bio || "Rust!";
-      document.getElementById("this-guy-changes").innerText = statusMessage;
+      const element = document.getElementById("this-guy-changes");
+      if (element) element.innerText = statusMessage;
     } catch (error) {
       console.error("Error fetching GitHub status:", error);
-      document.getElementById("this-guy-changes").innerText = "Rust!";
+      const element = document.getElementById("this-guy-changes");
+      if (element) element.innerText = "Rust!";
     }
   }
 
@@ -72,19 +73,26 @@ import ImageModal from "@/components/ImageModal";
   setInterval(getGitHubStatus, 15000);
 
   // Image modal functionality
-  import ImageModal from '@/components/ImageModal';
-  
-  // Initialize modal
-  const modal = new ImageModal();
+  let modal: any;
 
-  // Add click handlers to all profile images
-  document.addEventListener('astro:page-load', () => {
+  // Initialize modal and add click handlers
+  async function initializeModal() {
+    const { default: HeroImageModal } = await import('@/components/shared/HeroImageModal');
+    modal = new HeroImageModal();
+
     const profileImages = document.querySelectorAll('[data-image]');
-    profileImages.forEach(image => {
-      image.addEventListener('click', () => {
-        const imageSrc = image.dataset.image;
-        modal.create(imageSrc);
-      });
+    profileImages.forEach((image: Element) => {
+      if (image instanceof HTMLElement) {
+        image.addEventListener('click', () => {
+          const imageSrc = image.dataset.image;
+          if (imageSrc) modal.create(imageSrc);
+        });
+      }
     });
-  });
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', initializeModal);
+  // Also initialize on first load
+  initializeModal();
 </script>
