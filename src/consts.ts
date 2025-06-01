@@ -4,7 +4,7 @@ import type {
   NavigationLinks,
   SiteConfiguration,
   SocialLinks,
-} from "@/types.ts";
+} from "@/types";
 
 export const SITE: SiteConfiguration = {
   title: "AuthX",

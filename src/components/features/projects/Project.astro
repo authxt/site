@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { Forward } from "lucide-astro";
 import FadeIn from "@/components/animations/FadeIn.jsx";
 import SlideIn from "@/components/animations/SlideIn.jsx";
-import ProjectCard from "@/components/ProjectCard.astro";
+import ProjectCard from "@/components/features/projects/ProjectCard.astro";
 
 const projects = (await getCollection("projects")).slice(0, 5);
 ---

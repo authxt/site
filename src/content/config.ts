@@ -39,7 +39,7 @@ const projects = defineCollection({
 
 const authors = defineCollection({
   type: "content",
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
     pronouns: z.string().optional(),
     avatar: z.string().url(),

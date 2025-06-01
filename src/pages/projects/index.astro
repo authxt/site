@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import StaticLayout from "@/layouts/StaticLayout.astro";
-import SeoPage from "@/components/SeoPage.astro";
-import ProjectHoverList from "@/components/ProjectHoverList";
+import SeoPage from "@/components/shared/SeoPage.astro";
+import ProjectHoverList from "@/components/features/projects/ProjectHoverList";
 
 const projects = await getCollection("projects");
 ---

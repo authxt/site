@@ -1,7 +1,7 @@
 ---
-import HoverCard from "@/components/HoverCard.astro";
+import HoverCard from "@/components/ui/HoverCard.astro";
 import StaticLayout from "@/layouts/StaticLayout.astro";
-import SeoPage from "@/components/SeoPage.astro";
+import SeoPage from "@/components/shared/SeoPage.astro";
 import { Image } from "astro:assets";
 import SlideIn from "@/components/animations/SlideIn.jsx";
 
@@ -74,14 +74,14 @@ const images = [
 </StaticLayout>
 
 <script>
-  import ImageModal from '@/components/ImageModal';
+  import ImageModal from '@/components/shared/ImageModal.jsx';
 
   // Initialize modal
   const modal = new ImageModal();
 
   // Add click handlers to all gallery images
   document.addEventListener('astro:page-load', () => {
-    const galleryImages = document.querySelectorAll('[data-image]');
+    const galleryImages = document.querySelectorAll<HTMLElement>('[data-image]');
     galleryImages.forEach(image => {
       image.addEventListener('click', () => {
         const imageSrc = image.dataset.image;

@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Post from "@/components/Post.astro";
+import Post from "@/components/features/blog/Post.astro";
 import SlideIn from "@/components/animations/SlideIn.jsx";
-import SeoPage from "@/components/SeoPage.astro";
+import SeoPage from "@/components/shared/SeoPage.astro";
 
 const posts = (await getCollection("blog")).sort(
   (

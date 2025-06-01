@@ -23,4 +23,11 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex, rehypeHeadingIds],
     remarkPlugins: [remarkMath, remarkEmoji],
   },
+  vite: {
+    resolve: {
+      alias: {
+        '@': '/src',
+      },
+    },
+  },
 });

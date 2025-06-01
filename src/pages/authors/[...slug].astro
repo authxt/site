@@ -1,0 +1,45 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import SeoPage from "@/components/shared/SeoPage.astro";
+
+interface Props {
+  entry: CollectionEntry<"authors">;
+}
+
+export async function getStaticPaths() {
+  const authors = await getCollection("authors");
+  return authors.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout>
+  <SeoPage slot="head" title={`Author - ${entry.data.name}`} />
+  <div class="mx-auto max-w-3xl px-4">
+    <div class="mb-8 text-center">
+      {entry.data.avatar && (
+        <img
+          src={entry.data.avatar}
+          alt={entry.data.name}
+          width={120}
+          height={120}
+          class="mx-auto mb-4 rounded-full"
+        />
+      )}
+      <h1 class="mainheading mb-2 text-3xl">{entry.data.name}</h1>
+      {entry.data.bio && (
+        <p class="text-gray-600 dark:text-gray-400">{entry.data.bio}</p>
+      )}
+    </div>
+    <div class="prose dark:prose-dark mx-auto">
+      <Content />
+    </div>
+  </div>
+</Layout> 
